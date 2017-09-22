@@ -1,0 +1,44 @@
+header{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+header.fade-out{
+    opacity: 0;
+    transition: none;
+}
+nav{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+nav.fade-out{
+    opacity: 0;
+    transition: none;
+}
+section{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+section.fade-out{
+    opacity: 0;
+    transition: none;
+}
+footer{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+footer.fade-out{
+    opacity: 0;
+    transition: none;
+}
+.content-block-item{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+.box-item{
+    opacity: 1;
+    transition: 0.5s ease-in;
+}
+.fade-out{
+    opacity: 0;
+    transition: none;
+}

@@ -1,0 +1,503 @@
+<!--/**
+ * Created by PhpStorm.
+ * User: Armin
+ * Date: 05/07/2017
+ * Time: 10:42 PM
+ */-->
+<?php
+echo "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+    echo "<script src=\"Code/jquery/jquery-3.1.1.min.js\" language=\"javascript\" type=\"text/javascript\"></script>";
+    echo "<link rel='stylesheet' href=\"Code/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.min.css\">";
+    echo "<link rel=\"stylesheet\" href=\"Code/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css\">";
+    echo "<script src=\"Code/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.min.js\"></script>";
+    echo "<link rel=\"stylesheet\" href=\"Code/main.css?v=1.4.3\"><script src=\"Code/app.js?v=1.4.3\" language=\"javascript\" type=\"text/javascript\"></script>";
+    echo "<link rel=\"stylesheet\" href=\"Code/util.css\"><link rel=\"stylesheet\" href=\"Code/animations.css\">";
+    echo "<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-99077205-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>";
+    echo "<title>معرفی آموزشگاه علمی ذهن زیبا</title>";
+    echo "</head><body>";
+$mysqli = new mysqli('localhost', 'amoozzir_armin', 'khalepirezan', 'amoozzir_DB');
+$mysqli->set_charset("utf8");
+
+if ($mysqli->connect_error) {
+die('Connect Error (' . $mysqli->connect_errno . ') '
+. $mysqli->connect_error);
+}
+if (!empty($_POST)) {
+if ($_POST['email'] && $_POST['pass']) {
+$username = $mysqli->real_escape_string($_POST['email']);
+$password = $mysqli->real_escape_string($_POST['pass']);
+if ($_POST['emailoruser'] == 'email') {
+$user = mysqli_fetch_array($mysqli->query("SELECT * FROM user WHERE email='$username'"));
+} else {
+$user = mysqli_fetch_array($mysqli->query("SELECT * FROM user WHERE username='$username'"));
+}
+if ($user == '0') {
+die ("doesn't exist");
+}
+if ($user['password'] != $password) {
+die ("incorrect");
+}
+if ($user != 0 && $user['password'] == $password) {
+session_start();
+$_SESSION['user'] = $user['username'];
+$_SESSION['name'] = $user['name'];
+$_SESSION['phone'] = $user['phone'];
+$_SESSION['address'] = $user['address'];
+$_SESSION['credit'] = $user['credit'];
+}
+}
+} else {
+session_start();
+if (!isset($_SESSION['user'])){
+$_SESSION['user'] = 'guest';
+$_SESSION['name'] = 'Guest';
+}
+}
+?>
+<div class="bk">
+    lll
+</div>
+<!--
+    acount stuffffff
+-->
+<div class="register">
+    <div class="register-box popup_window">
+        <div class="cross">
+            <i class="fa fa-times"></i>
+        </div>
+        <div class="title">
+            ثبت نام
+        </div>
+        <form action="#" method="post">
+            <fieldset class="inner_register" style="display: block;">
+                <div class="row">
+                    <div class="half">
+                        <input type="text" name="username" placeholder="نام کاربری" id = "register-user">
+                        <div class="warnings">نام وارد شده نا معتبر می باشد.</div>
+                    </div>
+                    <div class="half">
+                        <input type="password" class="style-2" name="password" placeholder="گذرواژه" id = "register-pass">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="half">
+                        <input type="email" name="email" placeholder="پست الکترونیکی" id = "register-email">
+                        <div class="warnings">پست الکترونیک وارد شده نا معتبر می باشد.</div>
+                    </div>
+                    <div class="half">
+                        <input type="phone" name="phone" placeholder="شماره تلفن همراه، مثلا 09380000000" id="register-phone">
+                        <div class="warnings">شماره وارد شده نا معتبر می باشد.</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mquad">
+                        <div class="checkbox_container">
+                            <input type="checkbox" name="subscribe" id = "reg_chk" value="0">
+                            <label for="reg_chk">
+                            </label>
+                        </div>
+                        <span>
+                            اشتراک در سرویس رایانامه وبگاه
+                        </span>
+                    </div>
+                    <div class="quad">
+                        <input type="button" class="sbmt" value="ثبت نام">
+                    </div>
+                </div>
+                <input type="hidden" value="NA" id="register_email_verify" />
+                <input type="hidden" value="NA" id="register_user_verify" />
+                <input type="hidden" value="NA" id="register_phone_verify" />
+            </fieldset>
+            <fieldset class="success_register" style="display: none;">
+                <div class="title">
+                    ثبت نام با موفقیت انجام شد
+                </div>
+                <div class="description">
+                    برای استفاده از اکانت خود وارد شوید.
+                </div>
+                <div class="back-container">
+                    <input type="button" value="باشه" class="back-btn">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="nonfoot">
+    <!--    <div class="menu-desc">-->
+    <!--        <div class="index">-->
+    <!--            <div class = "cloud1"></div>-->
+    <!--            <div class = "cloud2"></div>-->
+    <!--            <div class = "cloud3"></div>-->
+    <!--            HOME-->
+    <!--        </div>-->
+    <!--        <div class="class">-->
+    <!--            CLASSES-->
+    <!--        </div>-->
+    <!--        <div class="edu">-->
+    <!--            EDUCATION-->
+    <!--        </div>-->
+    <!--        <div class="freexam">-->
+    <!--            FREEEXAMS-->
+    <!--        </div>-->
+    <!--        <div class="contest">-->
+    <!--            CONTEST-->
+    <!--        </div>-->
+    <!--        <div class="fun">-->
+    <!--            FUN-->
+    <!--        </div>-->
+    <!--        <div class="about">-->
+    <!--            ABOUT-->
+    <!--        </div>-->
+    <!--        <div class="contact">-->
+    <!--            CONTACT-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="sidebar container-fluid">
+        <div class="row">
+            <div class="col-md-12 nav-logo align-middle">
+                <a href="introduction.php"><img src="Resources/logo.jpg"></a>
+            </div>
+            <div class="col-md-12 nav-menu">
+                <div class="list-group">
+                    <a class="list-group-item blue" href="index.php"><span class="data" style="display: none">index</span>
+                        <i class="fa fa-home nav-items" aria-hidden="true"></i><span class="color">                            خانه
+</span>
+                    </a>
+                    <a class="list-group-item golden" href="olympiad.php"><span class="data" style="display: none">index</span>
+                        <i class="fa fa-question nav-items" aria-hidden="true"></i><span class="color">                            المپیاد چیست
+</span>
+                    </a>
+                    <a class="list-group-item red" href="class.php"><span class="data" style="display: none">class</span>
+                        <i class="fa fa-institution nav-items" aria-hidden="true"></i><span class="color">                            کلاس ها
+</span></a>
+                    <a class="list-group-item blue" href="contest_detail.php?cid=1" style="position: relative;"><img src="Resources/new.png" style="display:inline-block;position:absolute;top:3px;left:3px;width:25px;height:20px;"><span class="data" style="display: none">about</span>
+                        <i class="fa fa-user nav-items"
+                           aria-hidden="true"></i><span class="color">                         طرح سپهر
+</span></a>
+                    <!--                    <a class="list-group-item green" href="#"><span class="data" style="display: none">edu</span>-->
+                    <!--                        <i class="fa fa-graduation-cap nav-items" aria-hidden="true"></i><span class="color">                            سامانه آموزش مجازی-->
+                    <!--</span></a>-->
+                    <!--                    <a class="list-group-item orange" href="#"><span class="data" style="display: none">freexam</span>-->
+                    <!--                        <i class="fa fa-pencil nav-items" aria-hidden="true"></i><span class="color">آزمون های رایگان-->
+                    <!--</span></a>-->
+                    <a class="list-group-item lightpink" href="contest.php"><span class="data" style="display: none">contest</span>
+                        <i class="fa fa-trophy nav-items" aria-hidden="true"></i><span class="color">                        مسابقات
+                    </span></a>
+
+                    <!--                    <a class="list-group-item lightblue" href="fun.php"> <span class="data" style="display: none">fun</span>-->
+                    <!--                        <i class="fa fa-smile-o nav-items"-->
+                    <!--                                                                  aria-hidden="true"></i><span class="color">شکرستان-->
+                    <!--</span></a>-->
+                    <a class="list-group-item pink" href="about.php"><span class="data" style="display: none">about</span>
+                        <i class="fa fa-user nav-items"
+                           aria-hidden="true"></i><span class="color">                         کادر آموزشی
+</span></a>
+                    <a class="list-group-item green active" href="introduction.php"><span class="data" style="display: none">intro</span>
+                        <i class="fa fa-bullhorn nav-items"
+                           aria-hidden="true"></i><span class="color">معرفی ذهن زیبا
+</span></a>
+                    <a class="list-group-item orange" href="contact.php"><span class="data" style="display: none">contact</span>
+                        <i class="fa fa-phone nav-items"
+                           aria-hidden="true"></i><span class="color">                     تماس با ما
+</span></a>
+                    <a class="list-group-item telegram blue" href="https://t.me/amoozzz" target="_blank"><span class="data" style="display: none">contact</span>
+                        <i class="fa fa-telegram nav-items"
+                           aria-hidden="true"></i><span class="color">لینک تلگرام آموزشگاه
+</span></a>
+                    <a class="list-group-item telegram red" href="https://t.me/amoozz" target="_blank"><span class="data" style="display: none">contact</span>
+                        <i class="fa fa-telegram nav-items"
+                           aria-hidden="true"></i><span class="color">لینک تلگرام مشاوره
+</span></a>
+
+                    <a class="list-group-item instagram blue" href="https://www.instagram.com/amoozzir/" target="_blank"><span class="data" style="display: none">contact</span>
+                        <i class="fa fa-instagram nav-items"
+                           aria-hidden="true"></i><span class="color">                     لینک اینستاگرام آموزشگاه
+</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    </td>-->
+    <!--    <td class="mainbar">-->
+    <div class="mainbar">
+        <div class="mainbar-inner container-fluid">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                &nbsp; &nbsp; &nbsp;                        <?php
+                                //echo $_SESSION["PHPSESSID"];
+                                if (isset($_SESSION['user'])) {
+                                    if (!($_SESSION['user'] == 'guest')) {
+                                        echo '<a class="navbar-brand active" role="button"><span class="myButton2 navbar-brand-inner">' . $_SESSION['name'] . '</span></a><span class="credit">موجودی ' . $_SESSION["credit"] . '000 تومان' . '</span>';
+                                } else {
+                                echo '<a class="navbar-brand" role="button"><span class="myButton2 navbar-brand-inner">' . 'مهمان' . '</span></a>';
+                                }
+                                }
+                                ?>
+
+                            </div>
+                            <ul class="nav navbar-nav pull-right">
+                                <li><a class="myButton login" href="#">ورود</a></li>
+                                <li><a class="myButton register" href="#">ثبت نام</a></li>
+                            </ul>
+                        </div>
+                        <div class="account-menu">
+                            <div class="item enter">مدیریت حساب</div>
+                            <div class="item update">تکمیل/تغییر اطلاعات حساب</div>
+                            <div class="item end exit">خروج</div>
+                        </div>
+                    </nav>
+                    <div class="login-box">
+                        <div class="form">
+                            <div class="tab-content">
+                                <div id="login">
+                                    <form id="login-form" method="post" action="introduction.php">
+                                        <div class="form-group">
+                                            <label for="login-email">نام کاربری/پست الکترونیک</label>
+                                            <input type="text" class="form-control" id="login-email"
+                                                   aria-describedby="emailHelp"
+                                                   placeholder="ایمیل یا نام کاربری خود را وارد کنید" name="email"
+                                                   value="">
+                                            <small id="emailHelp" class="form-text text-muted red login-email-prompt">
+                                                نام کاربری/پست الکترونیک معتبر نمیباشد.
+                                            </small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="login-pass">رمز عبور</label>
+                                            <input type="password" class="form-control" id="login-pass"
+                                                   placeholder="رمز عبور را وارد کنید" name="pass" value="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="remember">
+                                                مرا به خاطر بسپار!
+                                            </label>
+                                            <input type="button" class="btn btn-primary sbmt" value="Submit">
+                                            <div class="busy-anim">
+                                                <div class="sk-fading-circle">
+                                                    <div class="sk-circle1 sk-circle"></div>
+                                                    <div class="sk-circle2 sk-circle"></div>
+                                                    <div class="sk-circle3 sk-circle"></div>
+                                                    <div class="sk-circle4 sk-circle"></div>
+                                                    <div class="sk-circle5 sk-circle"></div>
+                                                    <div class="sk-circle6 sk-circle"></div>
+                                                    <div class="sk-circle7 sk-circle"></div>
+                                                    <div class="sk-circle8 sk-circle"></div>
+                                                    <div class="sk-circle9 sk-circle"></div>
+                                                    <div class="sk-circle10 sk-circle"></div>
+                                                    <div class="sk-circle11 sk-circle"></div>
+                                                    <div class="sk-circle12 sk-circle"></div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="E" name="emailoruser" id="emailoruser"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!-- tab-content -->
+                        </div> <!-- /form -->
+                    </div>
+                </div>
+                <div class="col-md-12 banner">
+                    <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                    <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                    <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                    <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                    -->
+                    <div class="ttl">
+                        آموزشگاه علمی ذهن زیبا
+                    </div>
+                    <div class="detail">
+                        تنها آموزشگاه تخصصی المپیاد با مجوز رسمی از آموزش و پرورش شهر تهران
+                    </div>
+
+                    <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                      <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                      <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                      <!------------------------------------------------SVG IMPORT----------------------------------------------------------------------------------------------------------------------------------------------------------
+                      -->
+                </div>
+                <div class="col-md-12 news-block">
+                    <div class="news-image panel panel-default">
+                        <div style="background-image: url('Resources/news__v2.jpg'); background-size: 100% 100%;" id="news-holder">
+                            <script type="text/javascript">
+                                document.write('<img class="news-context" id="news1" src="Resources/news/current/news1.jpg?' + Math.random() + '">');
+                                document.write('<img class="news-context" id="news2" src="Resources/news/current/news2.jpg?' + Math.random() + '">');
+                                document.write('<img class="news-context" id="news3" src="Resources/news/current/news3.jpg?' + Math.random() + '">');
+                                document.write('<img class="news-context" id="news4" src="Resources/news/current/news4.jpg?' + Math.random() + '">');
+                            </script>
+                            <div style="display: none">
+                                <div class="right side">
+                                    <div class="outer"><a class="ghost-button-semi-transparent" href="#">
+                                        <div><i class="fa fa fa-chevron-right"></i></div>
+                                    </a></div>
+                                </div>
+                                <div class="left side">
+                                    <div class="outer"><a class="ghost-button-semi-transparent" href="#">
+                                        <div><i class="fa fa fa-chevron-left"></i></div>
+                                    </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 main-box">
+                    <div class="row">
+
+                        <div class="main-box-title">
+                            درباره آموزشگاه ذهن زیبا
+                        </div>
+                        <div class="textBox">
+                            آموزشگاه علمی ذهن زیبا (کد آموزشگاه 125/2/155/د ، با شماره مجوز 67821/125) را با تلاشِ گروهی از برترین های المپیاد و کنکور، با مجوز رسمی‌ از سازمان آموزش و پرورش شهر تهران در پائیز سال 13۹۴ تاسیس کردیم.در حال حاضر فضای آموزشی کشور کاملا رقابتی است و شرایط برای شکوفایی استعدادها بسیار سخت است از طرفی مقام معظم رهبری در بیانات خود فرمودند "بايد كارى بشود كه حتى يك استعداد، از ميان اين ميليونها نوجوان و جوان ايرانى هدر نرود". در این راستا تلاش می کنیم با مشاوره، برنامه ریزی اختصاصی و آموزش صحیح، باتوجه به وضعیت تحصیلی‌ و استعداد هر فرد، راه ترقی‌ را به همراه دانش آموزان طی‌ کنیم. به این منظور،کادر علمی‌ را از منتخبین المپیاد‌های علمی‌، کنکوری‌های موفق و دانشجو‌یان برتر دانشگاه‌های برگزیده گلچین کرده ایم تا سعی‌ کنیم بهترین‌ها را برای شما فراهم آوریم. آموزشگاه علمی ذهن زیبا با محیطی فوقع العاده، کلاس های استاندارد با تمامی امکانات، اساتید تراز اول و متعهد و کادر مدیریتی قوی، شرایط را برای برگزاری هر چه بهتر کلاس های آموزشی فراهم نموده است. در نتیحه کلاس های ذهن زیبا بسیار جذاب بوده و تمامی شرایط برای بهبود کارایی کلاس در نظر گرفته شده است.                        </div>
+                        <div class="main-box-title">
+                            چرا آموزشگاه علمی ذهن زیبا؟
+                        </div>
+                        <div class="textBox">
+                            سوالی هست که از ما زیاد می پرسن و میگن فرق شما با بقیه چیه و چرا آموزشگاه شما رو انتخاب کنیم... جواب‌های ما خیلی ساده و راحته ...
+                            <br>
+                            ملاک کلاس خوب چیه؟ استاد خوب وحرفه ای، تعداد دانش آموزان در کلاس درسی، محیط کلاس آرام و پر انرژی، جو علمی و آموزشی،... و صد البته مجوز که این روز ها خیلی ها توجهی بهش ندارن اما خیلی مهمه....
+                            <br>
+                            حالا دونه دونه براتون میگم که اینجا چه خبره..
+                            <br>
+                            <ol>
+                                <li>
+                                    اساتید آموزشگاه ما: همگی در زمینه کاری خودشون حرفه ای هستن و می تونین کادر علمی آموزشگاه رو به همراه سوابق علمی شون در بخش کادر علمی ببینید و البته بررسی کنید.
+                                </li>
+                                <li>
+                                    تعداد دانش آموزان: تعداد بچه ها در کلاس های ما حداکثر 6 نفر هست و بیشتر از این تعداد غیر ممکنه که کلاسی تشکیل بدیم چون هدف ما کیفیت خوب آموزش هست ومیخواهیم که شما رو به درس خوندن علاقه مند کنیم و هیچکس سوال حل نشده براش باقی نمونه و از درس خوندن نهایت لذت رو ببره.
+                                </li>
+                                <li>
+                                    محیط کلاس آرام و پر انرژی: از اونجایی که اساتید ما همه جوان های موفق و مدال آور هستن و همهشون با عشق درس خوندن نه به زور و اجبار،جو کلاس درسشون رو جوری سازماندهی میکنن که هیچکس از درس خوندن خسته نشه و استرس رو از ذهن بچه ها حذف میکنن. پس خیالتون از این بابت راحت.
+                                </li>
+                                <li>
+                                    مجوز رسمی آموزش و پرورش: ما تنها آموزشگاه مجاز و رسمی المپیادی با کادر تخصصی المپیاد هستیم. (خیلی ها ادعای رسمی بودن و با مجوز بودن می‌کنن که هیچکدوم ندارن! میگی نه، لینک آموزش و پرورش رو باز کن و ببین)
+                                    <br>
+                                    <a href="http://www.tehranedu.ir/Modules/Downloads/GetFile.aspx?page=764&mid=3334&DownloadID=2305">لیست آموزشگاه های علمی مجاز</a><br>
+                                    <a href="http://www.tehranedu.ir">وبگاه آموزش و پرورش تهران</a>
+                                </li>
+                                <li>
+                                    محیط آرام و سالمی آماده کردیم تا با هم پیشرفت کنیم.
+                                </li>
+
+                            </ol>
+                        </div>
+                        <div class="main-box-title">
+                            عنوان ذهن زیبا از کجا اومده؟
+                        </div>
+                        <div class="textBox"><div class="nash_pic">
+                            <img src="Resources/nash.jpg" style="width: 100%; height: 100%;"></div><div class="why">
+                            جالب است بدانید جان فوربز نَش جونیور ریاضی‌دان نابغه و برجسته آمریکایی و برنده جایزه نوبل اقتصاد بود. وی نظریه بازی ها  را مطرح کرد و معتقد بود زندگی یک بازی است و مردم بازیکنان آن،و اگر بتوانید رفتار (بازی) طرف مقابل را صحیح حدس بزنید احتمالا شما برنده بازی خواهید بود . بر اساس زندگی نش کتابی تحت عنوان ذهن زیبا در سال ۱۹۹۸ میلادی منتشر شد،پس از آن فیلمی با همین نام به کارگردانی ران هاوارد به نمایش در آمد و در نهایت ایده ذهن زیبا در ذهن ما شکل گرفت و آموزشگاه ما تحت عنوان ذهن زیبا تاسیس شد.
+                        </div></div>
+                        <div class="main-box-title">
+                            کادر اجرایی
+                        </div>
+                        <div class="textBox" style="text-align: center">
+                            <p>
+                                <b>
+                                    مؤسس آموزشگاه:‌
+                                </b>
+                                خانم محتسبی
+                            </p>
+                            <p>
+                                <b>
+                                    مدیر آموزشگاه:‌
+                                </b>
+                                خانم محتسبی
+                            </p>
+
+                        </div>
+                        <div class="kadr-container">
+                            <!--                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 context-box-about"><span-->
+                            <!--                                    style="display: none;" class="data">0</span>-->
+                            <!--                            <div class="image"><img src="Resources/Site/kadr/shahryari.jpg"></div>-->
+                            <!--                            <div class="textBox about-detail">-->
+                            <!--                                کارشناسی، علوم تربیتی - تکنولوژی آموزشی، کارشناسی ارشد علوم تربیتی - برنامه ریزی-->
+                            <!--                                درسی-->
+                            <!--                            </div>-->
+                            <!--                            <div class="textBox about-desc"><a>-->
+                            <!--                                    مریم شهریاری مرغجوییه-->
+                            <!--<br>-->
+                            <!--                                    جانشین مدیر-->
+                            <!--                                </a></div>-->
+                            <!--                        </div>-->
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 context-box-about"><span
+                                    style="display: none;" class="data">0</span>
+                                <div class="image"><img src="Resources/Site/kadr/rezae.jpg"></div>
+                                <div style="font-size: 0.8em" class="textBox about-detail" ‌>
+                                    فارغ التحصیل مهندسی‌ مکانیک و ریاضی‌ محض دانشگاه صنعتی‌ شریف ، برنده مدال طلای کشوری المپیاد ریاضی‌ سال ۱۳۸۸ و برنز جهانی‌ در سال ۲۰۱۰، نویسنده‌ی‌ کتاب‌های ۵+۱ فصل در نابرابری ها، چند جمله‌ای از چند جمله‌ای‌ها ،الفبای هندسه در المپیاد ریاضی‌.
+                                </div>
+                                <div class="textBox about-desc"><a>
+                                    سینا رضایی زارعی
+                                    <br>
+                                    مدیر آموزشی
+                                </a></div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 context-box-about"><span
+                                    style="display: none;" class="data">0</span>
+                                <div class="image"><img src="Resources/Site/kadr/behnamnia.jpg"></div>
+                                <div class="textBox about-detail">
+                                    دانشجوی کارشناسی کامپیوتر و ریاضی محض دانشگاه صنعتی شریف، برنده مدال طلای کشوری المپیاد ریاضی سال 92 و برنز جهانی 2014
+                                </div>
+                                <div class="textBox about-desc"><a>
+                                    آرمین بهنام نیا
+                                    <br>
+                                    مدیر وبگاه
+                                </a></div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 context-box-about"><span
+                                    style="display: none;" class="data">0</span>
+                                <div class="image"><img src="Resources/Site/kadr/shariat.jpg"></div>
+                                <div class="textBox about-detail">
+                                    کارشناسی ارشد مهندسی عمران، هماهنگ کننده ارشد پروژه های صنعتی
+                                </div>
+                                <div class="textBox about-desc"><a>
+                                    علی شریعت
+                                    <br>
+                                    مدیر مالی
+                                </a></div>
+                            </div>
+                            <div class="spacer" style="clear: both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--    </td>-->
+<!--    </tr>-->
+<!--    <tr class="footer">-->
+<!--        <td class="footer-context" colspan="2">-->
+<div class="footer">
+    <ul>
+        <li><a href="index.php">صفحه اصلی</a></li>
+        <li><a href="class.php">کلاس ها</a></li>
+        <li><a href="olympiad.php">المپیاد چیست؟</a></li>
+        <!--        <li><a>سامانه آمورش مجازی</a></li>-->
+        <!--        <li><a>آزمون های رایگان</a></li>-->
+        <!--        <li><a href="contest.php">مسابقات</a></li>-->
+        <!--        <li><a href="fun.php">شکرستان</a></li>-->
+        <li><a href="about.php">درباره ما</a></li>
+        <li><a href="contact.php">تماس با ما</a></li>
+        <li><a href="https://t.me/amoozzz"><i class="fa fa-telegram ftr" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.instagram.com/amoozzir/"><i class="fa fa-instagram ftr" aria-hidden="true"></i></a></li>
+    </ul>
+</div>
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- links -->
+
+    <!-- external plugins-->
+    <script src="Code/jquery/jquery-3.1.1.min.js"></script>
+    <!--<link rel="stylesheet" href="Code/bootstrap-4.0.0-alpha.6-dist/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css" type="text/css">-->
+    <link rel="stylesheet" href="Code/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
+
+    <!-- internal plugins -->
+    <link rel="stylesheet" href="Code/elements_init_fade/fade.css" type="text/css">
+    <link rel="stylesheet" href="Code/template_1.css" type="text/css">
+    <link rel="stylesheet" href="Code/spacing.css" type="text/css">
+    <link rel="stylesheet" href="Code/main.css" type="text/css">
+    <link rel="stylesheet" href="Code/responsive.css" type="text/css">
+    <link rel="stylesheet" href="Code/colors.css" type="text/css">
+    <link rel="stylesheet" href="Code/styles.css" type="text/css">
+    <link rel="stylesheet" href="Code/blog.css" type="text/css">
+    <link rel="stylesheet" href="Code/about.css" type="text/css">
+    <link rel="stylesheet" href="Code/class.css" type="text/css">
+    <script src="Code/directory_explorer.js" type="text/javascript"></script>
+    <script src="Code/app.js" type="text/javascript"></script>
+    <script src="Code/elements_init_fade/fade.js"></script>
+
+    <title>Page Title</title>
+</head>
+<body>
+    <!--<div id="console-test" style="direction: rtl; padding: 60px 20px 20px 20px; font-size: 1.5em"></div>-->
+    <header class="blue-sharp">
+        <script>hide('header')</script>
+        <div class="top-bar-PH"></div>
+        <div class="top-bar">
+            <div class="inner">
+                <div class="login-menu">
+                    <div class="flesh-container">
+                        <i class="fa fa-caret-up"></i>
+                    </div>
+                    <div class="main-container">
+                        <form id="login-form" action="login.php" method="post">
+                            <div style="padding: 10px 20px 10px 20px;">نام کاربری / پست الکترونیکی</div>
+                            <input type="text" id="login-form-username" name="username" class="input_st1">
+                            <label for="login-form-username"></label>
+                            <div style="padding: 10px 20px 10px 20px;">رمز عبور</div>
+                            <input type="password" id="login-form-password" name="username" class="input_st1">
+                            <label for="login-form-password"></label>
+                            <input type="button" class="submit_st1 sbmt" value="ورود">
+                            <div class="spacer5"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="manage">
+                    <div class="account-icon">
+                        <i class="fa fa-user gray-dark-font"></i>
+                    </div>
+                    <div class="account-link">
+                        <span class="menu">
+                            مهمان
+                        </span>
+                        <span class="name">
+اعتبار
+                        </span>
+                        <span class="credit">
+10 تومان
+                        </span>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="login"><span>ورود</span></div>
+                    <div class="register"><span>ثبت نام</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="title">
+                آموزشگاه علمی ذهن زیبا
+            <br>
+                <span class="desc">
+                تنها آموزشگاه تخصصی المپیاد با مجوز رسمی از آموزش و پرورش
+                </span>
+            </div>
+            <div class="logo"><img src="Resources/logo_min.fw.png"></div>
+        </div>
+    </header>
+    <nav class="green-yellow">
+        <script>hide('nav')</script>
+        <div class="inner">
+            <div class="_nav _nav-home _nav-active">
+                <a href="index.php">
+                    <span>خانه</span>
+                </a>
+            </div>
+            <div class="_nav _nav-class">
+                <a href="class.php">
+                    <span>کلاس ها</span>
+                </a>
+            </div>
+            <div class="_nav _nav-about">
+                <a href="about.php">
+                    <span>کادر آموزشی</span>
+                </a>
+            </div>
+            <div class="_nav _nav-contest">
+                <a href="contest.php">
+                    <span>مسابقات</span>
+                </a>
+            </div>
+            <div class="_nav _nav-news">
+                <a href="blog.php">
+                    <span>اخبار</span>
+                </a>
+            </div>
+            <div class="_nav _nav-introduction">
+                <a href="introduction.php">
+                    <span>درباره ما</span>
+                </a>
+            </div>
+            <div class="_nav _nav-contact">
+                <a href="contact.php">
+                    <span>تماس با ما</span>
+                </a>
+            </div>
+            <div class="_nav _nav-shop">
+                <a href="shop.php">
+                    <span>فروشگاه</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section id="news-block">
+        <script>hide('section#news-block')</script>
+        <div class="news-holder" id="news-holder-1">
+        </div>
+        <div class="news-holder" id="news-holder-2">
+        </div>
+        <div class="news-holder" id="news-holder-3">
+        </div>
+        <div class="news-holder" id="news-holder-4">
+        </div>
+        <div class="right-arrow-container">
+            <div class="right-arrow-o">
+                <i class="fa fa-chevron-circle-right gray-light-font"></i>
+            </div>
+        </div>
+        <div class="left-arrow-container">
+            <div class="left-arrow-o">
+                <i class="fa fa-chevron-circle-left gray-light-font"></i>
+            </div>
+        </div>
+    </section>
+    <section id="content-block">
+        <script>hide('section#content-block')</script>
+        <div class="search-box">
+            <!--<div class="spacer1"></div>-->
+            <input type="text" placeholder="کلمه مورد جستجو را وارد کنید و enter را بزنید" class="input_st1" id="search">
+        </div>
+        <div class="spacer3"></div>
+    </section>
+<footer class="blue-sharp">
+    <script>hide('footer')</script>
+    <div class="spacer2"></div>
+    <ul id="footer-links">
+        <li><a href="index.php">خانه</a></li>
+        <li><a href="class.php">کلاس ها</a></li>
+        <li><a href="about.php">کادر آموزشی</a></li>
+        <li><a href="contest.php">مسابقات</a></li>
+        <li><a href="blog.php">اخبار</a></li>
+        <li><a href="introduction.php">درباره ما</a></li>
+        <li><a href="contact.php">تماس با ما</a></li>
+        <li><a href="shop.php">فروشگاه</a></li>
+    </ul>
+    <div class="copy-right">
+        آموزشگاه علمی ذهن زیبا
+    </div>
+</footer>
+</body>
+</html>

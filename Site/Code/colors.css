@@ -1,0 +1,76 @@
+/*women like :*/
+    /*blue, purple, green*/
+/*woman dislike :*/
+    /*orange, brown, grey*/
+/*men like :*/
+    /*blue, black, green*/
+/*man dislike :*/
+    /*orange, brown, purple*/
+.blue-dark{
+    background-color: #242582;
+}
+.blue-dark-font{
+    color: #242582;
+}
+
+.blue-deep{
+    background-color: #3500D3;
+}
+.blue-loose{
+    background-color: #4056A1;
+}
+.blue-sharp{
+    background-color: #2E54FF;
+}
+.blue-sharp-light{
+    background-color: #92b8ff;
+}
+.blue-sharp-med{
+    background-color: #4c72ff;
+}
+.blue-default{
+    background-color: #0053BB;
+}
+.blue-default-light{
+    background-color: #0061ea;
+}
+.blue-default-font{
+    color: #0053BB;
+}
+.blue-warm{
+    background-color: #0688FA;
+}
+.blue-warm-light{
+    background-color: #2DABF9;
+}
+.gray-dark-font{
+    color: #212121;
+}
+.gray-default-font{
+    color: #262524;
+}
+
+.ocean{
+    background-color: #1FB58F;
+}
+.green-yellow{
+    /*#5cbd14*/
+    background-color: #2ECC40;
+}
+
+.gray-light-font{
+    color: #C0C0C0;
+}
+.gray-default-font{
+    color: gray;
+}
+.white-dark{
+    background-color: #f2f2f2;
+}
+.gray-light-border {
+    color: #e1e1e1;
+}
+
+.red{
+    background-color: #e62739;
+}

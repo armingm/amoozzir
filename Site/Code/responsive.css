@@ -1,0 +1,24 @@
+@media screen and (max-width: 992px) {
+    header .top-bar .inner {
+        width: 720px;
+    }
+
+    nav ._nav span {
+        font-size: 1.2em;
+        padding-right: 6px;
+        padding-left: 6px;
+    }
+    nav .inner{
+        width: 720px;
+    }
+    nav ._nav._nav-about span {
+        font-size: 1em;
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+}
+@media screen and (max-width: 768px) {
+    header .top-bar .inner {
+        /*background-color: #e69700;*/
+    }
+}
